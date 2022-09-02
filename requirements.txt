@@ -1,0 +1,3 @@
+pynput
+pywin32
+winproxy
