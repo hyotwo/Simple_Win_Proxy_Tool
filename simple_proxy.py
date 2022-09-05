@@ -50,6 +50,7 @@ while True:
        k1 = input("Proxy on Key Set : Alt + ")
        k2 = input("Proxy off Key Set : Alt + ") 
        k3 = "NULL"
+        break
 
        if k1 == k2 or k1 == "0" or k2 == "0":
   
