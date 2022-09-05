@@ -1,4 +1,5 @@
 from pynput.keyboard import Listener, Key, KeyCode
+from plyer import notification
 import os
 import sys
 from itertools import cycle
@@ -20,6 +21,7 @@ class color:
 store = set()
 text=['Proxy on', 'Proxy off']
 lc = cycle(text)
+toaster = ToastNotifier()
 os.system('color')
 
 print (" ####                                       #                    ##")
@@ -98,22 +100,28 @@ def onekey():
     if nex == 'Proxy on':
      print(color.bgreen+nex+color.d)
      os.system("winproxy on")
+     notification.notify(title="Proxy_Tool",message="Proxy On",app_name="Proxy_Tool",timeout=3)
     else:
      print(color.bred+nex+color.d)
      os.system("winproxy off")
+     notification.notify(title="Proxy_Tool",message="Proxy Off",app_name="Proxy_Tool",timeout=3)
      
 def proxy_on():
     print(color.bgreen+'proxy on'+color.d)
     os.system("winproxy on")
+    notification.notify(title="Proxy_Tool",message="Proxy On",app_name="Proxy_Tool",timeout=3)
      
 def proxy_off():
     print(color.bred+'proxy off'+color.d)
     os.system("winproxy off")
+    notification.notify(title="Proxy_Tool",message="Proxy off",app_name="Proxy_Tool",timeout=3)
 
 def proxy_status():
     print(color.byellow+'proxy status'+color.d)
     print(color.white+"-------------------------------"+color.cyan)
-    os.system("winproxy view")
+    view = os.system("winproxy view")
+    print(view)
+    notification.notify(title="Proxy_Tool",message="Status Check Console",app_name="Proxy_Tool",timeout=3)
     print(color.white+"-------------------------------"+color.d)
 
 def exit():
