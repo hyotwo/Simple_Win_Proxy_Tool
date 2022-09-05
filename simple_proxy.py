@@ -32,11 +32,12 @@ print ("                              ###  ")
 
 
 
-qs = input("Do you want to use Proxy on/off as"+color.byellow+" one key?"+color.d+"(Y/N)")
+qs = input("Do you want to use Proxy on/off as"+color.byellow+" One Key?"+color.d+"(Y/N)")
 
 if qs == "y" or qs == "Y":
 
-    k1 = input("Proxy on Key Set : Alt + ")
+    k3 = input("Proxy on/off Key Set : Alt + ")
+    k1 = "NULL"
     k2 = "NULL"
     
 elif qs == "n" or qs == "N":
@@ -45,7 +46,8 @@ elif qs == "n" or qs == "N":
     
 
     k1 = input("Proxy on Key Set : Alt + ")
-    k2 = input("Proxy off Key Set : Alt + ")  
+    k2 = input("Proxy off Key Set : Alt + ") 
+    k3 = "NULL"
 
     if k1 == k2 or k1 == "0" or k2 == "0":
   
@@ -56,14 +58,15 @@ elif qs == "n" or qs == "N":
      break
     
 else:
-    print("Error")
+    print(color.red+"Y or N only"+color.d)
     sys.exit()
     
 
 
 HOT_KEYS = {
     
-      'proxy': set([ Key.alt_l, KeyCode(char=k1)] )
+      'onekey': set([ Key.alt_l, KeyCode(char=k3)] )
+    ,  'proxy_on': set([ Key.alt_l, KeyCode(char=k1)] )
     , 'proxy_off': set([ Key.alt_l, KeyCode(char=k2)] )
     , 'proxy_status': set([ Key.alt_l, KeyCode(char='0')] )
     , 'exit': set([Key.alt_l, Key.esc] )
@@ -71,9 +74,14 @@ HOT_KEYS = {
 
 
 print ("\033[91m"+"------------------------control------------------------"+color.d)
-print (color.bgreen+"○ Proxy on-Alt+"+k1+color.d+" ::::::: "+color.magenta+"○ Proxy off-Alt+"+k2+color.d+" ::::::: "+color.yellow+"○ Proxy Status-Alt+0"+color.d+" ::::::: "+color.red+"○ Exit-Alt+esc"+color.d)
+
+if qs == "n" or qs == "N":
+    print (color.bgreen+"○ Proxy on-Alt+"+k1+color.d+" ::::::: "+color.magenta+"○ Proxy off-Alt+"+k2+color.d+" ::::::: "+color.yellow+"○ Proxy Status-Alt+0"+color.d+" ::::::: "+color.red+"○ Exit-Alt+esc"+color.d)
+
+else:
+    print (color.bgreen+"○ Proxy on/off-Alt+"+k3+color.d+" ::::::: "+color.yellow+"○ Proxy Status-Alt+0"+color.d+" ::::::: "+color.red+"○ Exit-Alt+esc"+color.d)
  
-def proxy():
+def onekey():
     nex = next(lc)
     if nex == 'Proxy on':
      print(color.bgreen+nex+color.d)
@@ -81,6 +89,10 @@ def proxy():
     else:
      print(color.bred+nex+color.d)
      os.system("winproxy off")
+     
+def proxy_on():
+    print(color.bgreen+'proxy on'+color.d)
+    os.system("winproxy on")
      
 def proxy_off():
     print(color.bred+'proxy off'+color.d)
