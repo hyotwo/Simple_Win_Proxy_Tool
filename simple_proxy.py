@@ -1,5 +1,4 @@
 from pynput.keyboard import Listener, Key, KeyCode
-import io
 import win32api
 import os
 import sys
@@ -33,7 +32,7 @@ print ("                              ###  ")
 
 
 
-qs = input("Would you like to use one key for the Proxy On/Off feature? (Y/N)")
+qs = input("Do you want to use Proxy on/off as"+color.byellow+" one key?"+color.d+"(Y/N)")
 
 if qs == "y" or qs == "Y":
 
