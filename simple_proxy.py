@@ -36,11 +36,17 @@ while True:
   qs = input("Do you want to use Proxy on/off as"+color.byellow+" One Key?"+color.d+"(Y/N)")
 
   if qs == "y" or qs == "Y":
-
+  
     k3 = input("Proxy on/off Key Set : Alt + ")
     k1 = "NULL"
     k2 = "NULL"
-    break
+    
+    
+    if k3 == "0":
+      print(color.red+"Don't set it to 0 key"+color.d)
+      
+    else:
+     break
     
   elif qs == "n" or qs == "N":
      while True:
@@ -52,9 +58,11 @@ while True:
        k3 = "NULL"
        
 
-       if k1 == k2 or k1 == "0" or k2 == "0":
+       if k1 == k2:
   
          print(color.red+"The same key is not possible."+color.d)
+       elif k1 == "0" or k2 == "0": 
+         print(color.red+"Don't set it to 0 key"+color.d)
   
        else:
     
@@ -103,7 +111,8 @@ def proxy_off():
     os.system("winproxy off")
 
 def proxy_status():
-    print(color.byellow+'proxy status'+color.cyan)
+    print(color.byellow+'proxy status'+color.d)
+    print(color.white+"-------------------------------"+color.cyan)
     os.system("winproxy view")
     print(color.white+"-------------------------------"+color.d)
 
