@@ -1,7 +1,9 @@
 from pynput.keyboard import Listener, Key, KeyCode
+import io
 import win32api
 import os
 import sys
+from itertools import cycle
 
 class color:
     d='\033[00m'
@@ -18,7 +20,8 @@ class color:
     cyan='\033[96m'
  
 store = set()
-
+text=['Proxy on', 'Proxy off']
+lc = cycle(text)
 os.system('color')
 
 print (" ####                                       #                    ##")
@@ -29,14 +32,39 @@ print (" #      #       ###   #  #       #           ##    ###    ###    ###")
 print ("                              ###  ")
 
 
-k1 = input("Proxy on Key Set : Alt + ")
-k2 = input("Proxy off Key Set : Alt + ")
 
+qs = input("Would you like to use one key for the Proxy On/Off feature? (Y/N)")
+
+if qs == "y" or qs == "Y":
+
+    k1 = input("Proxy on Key Set : Alt + ")
+    k2 = "NULL"
+    
+elif qs == "n" or qs == "N":
+  while True:
+
+    
+
+    k1 = input("Proxy on Key Set : Alt + ")
+    k2 = input("Proxy off Key Set : Alt + ")  
+
+    if k1 == k2 or k1 == "0" or k2 == "0":
+  
+     print(color.red+"The same key is not possible."+color.d)
+  
+    else:
+    
+     break
+    
+else:
+    print("Error")
+    sys.exit()
+    
 
 
 HOT_KEYS = {
     
-      'proxy_on': set([ Key.alt_l, KeyCode(char=k1)] )
+      'proxy': set([ Key.alt_l, KeyCode(char=k1)] )
     , 'proxy_off': set([ Key.alt_l, KeyCode(char=k2)] )
     , 'proxy_status': set([ Key.alt_l, KeyCode(char='0')] )
     , 'exit': set([Key.alt_l, Key.esc] )
@@ -46,9 +74,14 @@ HOT_KEYS = {
 print ("\033[91m"+"------------------------control------------------------"+color.d)
 print (color.bgreen+"○ Proxy on-Alt+"+k1+color.d+" ::::::: "+color.magenta+"○ Proxy off-Alt+"+k2+color.d+" ::::::: "+color.yellow+"○ Proxy Status-Alt+0"+color.d+" ::::::: "+color.red+"○ Exit-Alt+esc"+color.d)
  
-def proxy_on():
-    print(color.bgreen+'proxy on'+color.d)
-    os.system("winproxy on")
+def proxy():
+    nex = next(lc)
+    if nex == 'Proxy on':
+     print(color.bgreen+nex+color.d)
+     os.system("winproxy on")
+    else:
+     print(color.bred+nex+color.d)
+     os.system("winproxy off")
      
 def proxy_off():
     print(color.bred+'proxy off'+color.d)
