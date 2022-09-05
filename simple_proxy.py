@@ -1,5 +1,4 @@
 from pynput.keyboard import Listener, Key, KeyCode
-import win32api
 import os
 import sys
 from itertools import cycle
@@ -32,34 +31,37 @@ print ("                              ###  ")
 
 
 
-qs = input("Do you want to use Proxy on/off as"+color.byellow+" One Key?"+color.d+"(Y/N)")
 
-if qs == "y" or qs == "Y":
+while True:
+  qs = input("Do you want to use Proxy on/off as"+color.byellow+" One Key?"+color.d+"(Y/N)")
+
+  if qs == "y" or qs == "Y":
 
     k3 = input("Proxy on/off Key Set : Alt + ")
     k1 = "NULL"
     k2 = "NULL"
+    break
     
-elif qs == "n" or qs == "N":
-  while True:
+  elif qs == "n" or qs == "N":
+     while True:
 
     
 
-    k1 = input("Proxy on Key Set : Alt + ")
-    k2 = input("Proxy off Key Set : Alt + ") 
-    k3 = "NULL"
+       k1 = input("Proxy on Key Set : Alt + ")
+       k2 = input("Proxy off Key Set : Alt + ") 
+       k3 = "NULL"
 
-    if k1 == k2 or k1 == "0" or k2 == "0":
+       if k1 == k2 or k1 == "0" or k2 == "0":
   
-     print(color.red+"The same key is not possible."+color.d)
+         print(color.red+"The same key is not possible."+color.d)
   
-    else:
+       else:
     
-     break
+         break
     
-else:
+  else:
     print(color.red+"Y or N only"+color.d)
-    sys.exit()
+    #sys.exit()
     
 
 
@@ -106,6 +108,7 @@ def proxy_status():
 def exit():
     print("Exit")
     sys.exit()    
+    
 
 def handleKeyPress( key ):
     store.add( key )
@@ -128,3 +131,4 @@ def handleKeyRelease( key ):
 
 with Listener(on_press=handleKeyPress, on_release=handleKeyRelease) as listener:
     listener.join()
+
