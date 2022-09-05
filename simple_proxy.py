@@ -21,7 +21,6 @@ class color:
 store = set()
 text=['Proxy on', 'Proxy off']
 lc = cycle(text)
-toaster = ToastNotifier()
 os.system('color')
 
 print (" ####                                       #                    ##")
